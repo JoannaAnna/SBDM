@@ -125,7 +125,7 @@ Class Product {
         // return $stmt->execute();
 
         if($stmt->execute()){
-            $_SESSION['status'] = "Une nouvelle bière $productId a été ajoutée à la base de données";
+            $_SESSION['status'] = "Une nouvelle bière $productName a été ajoutée à la base de données";
             header('Location: http://localhost/ecf_Joanna/manageProducts');
         }
 
@@ -143,7 +143,7 @@ Class Product {
     }
 
     public function getProduct($idProduct) {
-        $query = "SELECT t1.id_article AS code, t1.nom_article, t1.prix_achat, t1.volume, t1.titrage, t2.nom_couleur, t3.nom_type, t3.id_type, t4.nom_marque, t5.nom_pays
+        $query = "SELECT t1.id_article AS code, t1.nom_article, t1.prix_achat, t1.volume, t1.titrage, t2.nom_couleur, t2.id_couleur, t3.nom_type, t3.id_type, t4.id_marque, t4.nom_marque, t5.nom_pays
         FROM article AS t1 LEFT OUTER JOIN couleur AS t2 ON t1.id_couleur = t2.id_couleur
         LEFT OUTER JOIN typebiere AS t3 ON t1.id_type = t3.id_type
         INNER JOIN marque AS t4 ON t1.id_marque = t4.id_marque
@@ -170,8 +170,6 @@ Class Product {
         $stmt->bindParam(':brandId', $brandId);
         $stmt->bindParam(':colorId', $colorId);
         $stmt->bindParam(':typeId', $typeId);
-        
-        // return $stmt->execute();
 
         if($stmt->execute()){
             $_SESSION['updatedPr'] = "La bière $productId, $productName, $productPrice, 
