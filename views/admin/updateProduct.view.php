@@ -13,9 +13,11 @@
         $productVolume = $row['volume'];
         $productTitrage = $row['titrage'];
         $colorName = $row['nom_couleur'];
+        $colorId = $row['id_couleur'];
         $brandName = $row['nom_marque'];
+        $brandId = $row['id_marque'];
         $typeName = $row['nom_type'];
-        $countryName = $row['nom_pays'];
+        $typeId = $row['id_type'];
     ?>
 
 <?php include_once './views/header_admin.php'?>
@@ -26,7 +28,7 @@
         <div class="form-outline mb-4 w-50 m-auto">
             <label for="productId" class="form-label">Id</label>
             <input type="text" name="productId" class="form-control"
-                value="<?php echo $idProduct; ?>" disabled>
+                value="<?php echo $idProduct; ?>">
             </div>
         <div class="form-outline mb-4 w-50 m-auto">
             <label for="productName" class="form-label">Nom</label>
@@ -35,51 +37,49 @@
         </div>
         <div class="form-outline mb-4 w-50 m-auto">
             <label for="productPrice" class="form-label">Prix</label>
-            <input type="text" name="productPrice" class="form-control"
+            <input type="number" step=".01" name="productPrice" class="form-control"
             value="<?php echo $productPrice; ?>" required>
         </div>
         <div class="form-outline mb-4 w-50 m-auto">
             <label for="productVolume" class="form-label">Volume</label>
-            <select name="productVolume" class="form-control" >
-                <option value=""><?php echo $productVolume; ?></option>
-                <option value="">75 cl</option>
-                <option value="">33 cl</option>
-            </select>
+            <input type="number" step=".01" name="productVolume" class="form-control"
+            value="<?php echo $productVolume; ?>" required>
+        
         </div>
         <div class="form-outline mb-4 w-50 m-auto">
             <label for="productTitrage" class="form-label">Titrage</label>
-            <input type="text" name="productTitrage" class="form-control"
+            <input type="number" step=".01" name="productTitrage" class="form-control"
             value="<?php echo $productTitrage; ?>" required>
         </div>
         <div class="form-outline mb-4 w-50 m-auto">
-            <label for="productVolume" class="form-label">Marque</label>
-            <select name="productVolume" class="form-control" >
-                <option value=""><?php echo $brandName; ?></option>
+            <label for="brandName" class="form-label">Marque</label>
+            <select name="brandName" class="form-control" >
+                <option value="<?php echo $brandId; ?>" selected><?php echo $brandName; ?></option>
                 <?php
                     foreach ($brands as $brand) {
-                        echo "<option>".$brand['id_marque']." | ".$brand['nom_marque']."</option>";
+                        echo "<option value='".$brand['id_marque']."'>".$brand['nom_marque']."</option>";
                     }
                 ?>
             </select>
         </div>
         <div class="form-outline mb-4 w-50 m-auto">
-            <label for="productVolume" class="form-label">Couleur</label>
-            <select name="productVolume" class="form-control" >
-                <option value=""><?php echo $colorName; ?></option>
+            <label for="colorName" class="form-label">Couleur</label>
+            <select name="colorName" class="form-control" >
+                <option value="<?php echo $colorId; ?>" selected><?php echo $colorName; ?></option>
                 <?php
                     foreach ($colors as $color) {
-                        echo "<option>".$color['id_couleur']." | ".$color['nom_couleur']."</option>";
+                        echo "<option value='".$color['id_couleur']."'>".$color['nom_couleur']."</option>";
                     }
                 ?>
             </select>
         </div>
         <div class="form-outline mb-4 w-50 m-auto">
-            <label for="productVolume" class="form-label">Type</label>
-            <select name="productVolume" class="form-control" >
-                <option value=""><?php echo $typeName; ?></option>
+            <label for="typeName" class="form-label">Type</label>
+            <select name="typeName" class="form-control" >
+                <option value="<?php echo $typeId; ?>" selected><?php echo $typeName; ?></option>
                 <?php
                     foreach ($types as $type) {
-                        echo "<option>".$type['id_type']." | ".$type['nom_type']."</option>";
+                        echo "<option value='".$type['id_type']."'>".$type['nom_type']."</option>";
                     }
                 ?>
             </select>
