@@ -31,18 +31,17 @@ class UpdateProductController {
         
         // on appelle la méthode updateProduct via la variable globale POST sur le site MAJ
         if(isset($_POST["updateProduct"])) {
-            $productId = filter_input(INPUT_POST, 'productId');
+            $productId = filter_input(INPUT_POST, 'productId', FILTER_SANITIZE_NUMBER_INT);
             $productName = filter_input(INPUT_POST, 'productName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $productPrice = filter_input(INPUT_POST, 'productPrice', FILTER_SANITIZE_NUMBER_FLOAT);
-            $productVolume = filter_input(INPUT_POST, 'productVolume');
+            $productVolume = filter_input(INPUT_POST, 'productVolume', FILTER_SANITIZE_NUMBER_INT);
             $productTitrage = filter_input(INPUT_POST, 'productTitrage', FILTER_SANITIZE_NUMBER_FLOAT);
-            $brandId = filter_input(INPUT_POST, 'brandName');
-            $colorId = filter_input(INPUT_POST, 'colorName');
-            $typeId = filter_input(INPUT_POST, 'typeName');
+            $brandId = $_POST["brandName"];
+            $colorId = $_POST["colorName"];
+            $typeId = $_POST["typeName"];
 
             $updateProduct = $this->model->updateProduct($productId, $productName, $productPrice, 
-                $productVolume, $productTitrage, $brandId, $colorId, $typeId);    
-
+            $productVolume, $productTitrage, $brandId, $colorId, $typeId);
         }
     
 
